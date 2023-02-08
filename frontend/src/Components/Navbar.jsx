@@ -3,6 +3,7 @@ import {Box, HStack, Image, Input, Text} from "@chakra-ui/react"
 import logo from "../Logo/HI-FI-2.png"
 import {RiUser3Line} from 'react-icons/ri'
 import {AiOutlineShoppingCart} from "react-icons/ai"
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
@@ -20,7 +21,7 @@ const Navbar = () => {
       </HStack>
       <HStack w="30%" justifyContent="space-evenly">
         <Input placeholder='SEARCH' w="300px" />
-        <RiUser3Line size="25px"/>
+        <Link to="/login"> <RiUser3Line size="25px"/> </Link>
         <AiOutlineShoppingCart size="25px" />
       </HStack>
       </HStack>
