@@ -6,23 +6,25 @@ const jwt=require("jsonwebtoken")
 const userRouter=express.Router()
 
 userRouter.post("/register",async(req,res)=>{
-    const {email,password,name,mobile}=req.body
-    try{
-        bcrypt.hash(password, 5,async (err, secure_password)=> {
-            if(err){
-                console.log(err)
-            } else {
-                const user=new UserModel({email,password:secure_password,name,mobile})
-                await user.save()
-                res.send("Registered")
-            }
+
+    const { email, password ,name, mobile} = req.body;
+    const check = await UserModel.findOne({ email });
+    if (check) {
+      res.send({"msg":"Already had registerd plz login"});
+    } else {
+      try {
+        bcrypt.hash(password, 6, async function (err, hash) {
+          const user = new UserModel({ email, password: hash, name, mobile });
+         
+          await user.save();
+          res.send({msg:"Sign Up Successfull"});
         });
-       
-    }catch(err){
-        res.send("Error in registering the user")
-        console.log(err)
+      } catch (e) {
+        console.log(e);
+        res.send({"msg": "Something went wrong contact admin" });
+      }
     }
-    res.send("Registerd")
+ //return  res.send("Registerd")
 })
 
 userRouter.post("/login",async(req,res)=>{
@@ -34,16 +36,16 @@ userRouter.post("/login",async(req,res)=>{
             bcrypt.compare(password, hashed_pass, (err, result)=> {
                 if(result){
                     const token = jwt.sign({ course: 'backend' }, 'masai');
-                    res.send({"msg":"Login Successfull","token":token})
+                return    res.send({"msg":"Login Successfull","token":token})
                 } else {
-                    res.send("Wrong Credentials")
+                 return   res.send("Wrong Credentials")
                 }
             });
         }else{
-            res.send("Wrong Credentials")
+           return res.send("Wrong Credentials")
         }
     }catch(err){
-        res.send("Something went wrong")
+      return  res.send("Something went wrong")
         console.log(err)
     } 
 })

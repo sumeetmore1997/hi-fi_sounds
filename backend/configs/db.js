@@ -1,7 +1,8 @@
 const mongoose=require("mongoose")
 
-const connection=mongoose.connect("mongodb://127.0.0.1:27017/prd")
+const connection=mongoose.connect("mongodb+srv://sumeet:sumeet@cluster0.n0wmo.mongodb.net/prd?retryWrites=true&w=majority")
 
 module.exports={
     connection
 }
+
