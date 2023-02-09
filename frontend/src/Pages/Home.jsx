@@ -1,6 +1,7 @@
 import { Box, HStack, Image, Img, Link, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import Carousel from "better-react-carousel";
+import BannerSlider from '../Homepart/BannerSlider';
 
 const slideimg = [
   {
@@ -62,6 +63,8 @@ const Home = () => {
         ))}
       </Carousel>
       </Box>
+
+      <BannerSlider/>
 
     </>
   )
