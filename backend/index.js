@@ -2,7 +2,7 @@ const express=require("express")
 const cors=require("cors")
 const {connection}=require("./configs/db")
 const {userRouter}=require("./routes/User.route")
-const {productRouter}=require("./routes/Products.route")
+const {productRoute}=require("./routes/Products.route")
 
 
 const app=express()
@@ -18,7 +18,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/users",userRouter)
-app.use("/products",productRouter)
+app.use("/products",productRoute)
 
 
 

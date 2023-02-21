@@ -1,18 +1,38 @@
 const mongoose=require("mongoose");
-const productSchema=mongoose.Schema({
+
+const earbudsSchema=mongoose.Schema({
     name:{type:String,required:true},
     img1:{type:String,required:true},
-    img2:String,
+    img2:{type:String},
     price:{type:Number,required:true},
-    mrp:{type:String,required:true},
-    discount:{type:String,required:true},
-    category:{type:String,required:true},
-    priority:String,
-    rating:Number,
-    rating_review:String,
-    sold:String
+    mrp:{type:Number,required:true},
+    discount:{type:Number,required:true},
+    priority:{type:String},
+    rating:{type:Number},
+    rating_review:{type:Number},
+    sold_percent:{type:Number},
+    qty:{type:Number},
+    available:{type:Number}
 })
 
-const ProductModel=mongoose.model("products",productSchema);
+const EarbudsModel=mongoose.model("earbuds",earbudsSchema);
 
-module.exports={ProductModel};
+const rockerzSchema=mongoose.Schema({
+    name:{type:String,required:true},
+    img1:{type:String,required:true},
+    img2:{type:String},
+    price:{type:Number,required:true},
+    mrp:{type:Number,required:true},
+    discount:{type:Number,required:true},
+    priority:{type:String},
+    rating:{type:Number},
+    rating_review:{type:Number},
+    sold_percent:{type:Number},
+    qty:{type:Number},
+    available:{type:Number}
+})
+
+const RockerzModel=mongoose.model("rockerz",rockerzSchema);
+
+
+module.exports={EarbudsModel, RockerzModel};
